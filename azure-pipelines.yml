@@ -1,0 +1,18 @@
+trigger:
+  branches:
+    include:
+      - main  # Trigger the pipeline on pushes to the main branch
+
+pool:
+  vmImage: 'ubuntu-latest'  # Use the latest Ubuntu image, which comes with Python pre-installed
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'  # Use Python 3.x version
+    addToPath: true  # Add Python to the PATH
+
+- script: |
+    python --version  # Verify the Python version
+    python hello.py   # Run the hello.py script
+  displayName: 'Run hello.py'
